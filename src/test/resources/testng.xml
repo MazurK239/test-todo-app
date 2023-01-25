@@ -7,9 +7,10 @@
         </classes>
     </test>
 
-    <test name="Endpoints">
+    <test name="Endpoints" parallel="classes" thread-count="4">
         <classes>
             <class name="com.test.todo.endpoints.GetTodosTest"/>
+            <class name="com.test.todo.endpoints.PostTodoTest"/>
         </classes>
     </test>
 </suite>

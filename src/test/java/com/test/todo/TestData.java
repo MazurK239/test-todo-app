@@ -20,14 +20,13 @@ public enum TestData {
 
     public void clearTestData() {
         log.info("Clearing test data");
-        testData.forEach(todo -> controller.deleteTodo(todo.getId()));
+        List<TodoDto> todos = controller.getTodos().as(new TypeRef<>() {});
+        todos.forEach(todo -> controller.deleteTodo(todo.getId()));
         testData.clear();
     }
 
     public void generateTestData() {
         log.info("Generating test data");
-        List<TodoDto> todos = controller.getTodos().as(new TypeRef<>() {});
-        todos.forEach(todo -> controller.deleteTodo(todo.getId()));
         for (int i = 0; i < 5; i++) {
             TodoDto todo = TodoDto.newTodo();
             todo.setText("Test todo " + i);

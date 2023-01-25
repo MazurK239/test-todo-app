@@ -1,6 +1,7 @@
 package com.test.todo;
 
 import com.test.todo.dto.TodoDto;
+import com.test.todo.dto.TodoNoTypesDto;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -31,6 +32,10 @@ public class TodosController {
         return given(rs).body(todo).post();
     }
 
+    public Response createTodoNoTypes(TodoNoTypesDto todo) {
+        return given(rs).body(todo).post();
+    }
+
     public Response getTodos() {
         return getTodos(null, null);
     }
@@ -43,6 +48,10 @@ public class TodosController {
     }
 
     public Response updateTodo(Long id, TodoDto updatedTodo) {
+        return given(rs).body(updatedTodo).put("/" + id);
+    }
+
+    public Response updateTodoNoTypes(Object id, TodoNoTypesDto updatedTodo) {
         return given(rs).body(updatedTodo).put("/" + id);
     }
 

@@ -3,6 +3,7 @@ package com.test.todo.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.Random;
@@ -11,7 +12,8 @@ import java.util.Random;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TodoDto {
+@EqualsAndHashCode
+public class TodoDto implements ITodo {
     private Long id;
     private String text;
     private Boolean completed;
@@ -20,8 +22,13 @@ public class TodoDto {
         Random random = new Random();
         return TodoDto.builder()
                 .id(Math.abs(random.nextLong()))
-                .text("")
+                .text("Randomly generated todo " + random.nextInt())
                 .completed(false)
                 .build();
+    }
+
+    @Override
+    public String toString() {
+        return "{id: " + id + "; text: " + text + "; completed: " + completed + "}";
     }
 }

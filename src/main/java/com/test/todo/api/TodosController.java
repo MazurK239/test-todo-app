@@ -1,7 +1,6 @@
-package com.test.todo;
+package com.test.todo.api;
 
-import com.test.todo.dto.TodoDto;
-import com.test.todo.dto.TodoNoTypesDto;
+import com.test.todo.dto.ITodo;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -28,18 +27,6 @@ public class TodosController {
             // .auth().basic(USERNAME, PASSWORD);
             .headers("Authorization", "Basic " + AUTH);
 
-    public Response createTodo(TodoDto todo) {
-        return given(rs).body(todo).post();
-    }
-
-    public Response createTodoNoTypes(TodoNoTypesDto todo) {
-        return given(rs).body(todo).post();
-    }
-
-    public Response getTodos() {
-        return getTodos(null, null);
-    }
-
     public Response getTodos(Object offset, Object limit) {
         Map<String, Object> queryParams = new HashMap<>();
         if (offset != null) queryParams.put("offset", offset);
@@ -47,19 +34,15 @@ public class TodosController {
         return given(rs).queryParams(queryParams).get();
     }
 
-    public Response updateTodo(Long id, TodoDto updatedTodo) {
+    public Response createTodo(ITodo todo) {
+        return given(rs).body(todo).post();
+    }
+
+    public Response updateTodo(Object id, ITodo updatedTodo) {
         return given(rs).body(updatedTodo).put("/" + id);
     }
 
-    public Response updateTodoNoTypes(Object id, TodoNoTypesDto updatedTodo) {
-        return given(rs).body(updatedTodo).put("/" + id);
-    }
-
-    public Response deleteTodo(Long id) {
-        return given(rsWithAuth).delete("/" + id);
-    }
-
-    public Response deleteTodoNoTypes(Object id) {
+    public Response deleteTodo(Object id) {
         return given(rsWithAuth).delete("/" + id);
     }
 }

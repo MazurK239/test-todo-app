@@ -16,7 +16,7 @@ public class PostTodoTest extends BaseContractTest {
 
     @Test(dataProvider = "postCorrectParams")
     public void postWithCorrectParamsTest(Object id, Object text, Object completed) {
-        Response response = controller.createTodoNoTypes(TodoNoTypesDto.builder()
+        Response response = controller.createTodo(TodoNoTypesDto.builder()
                 .id(id)
                 .text(text)
                 .completed(completed)
@@ -26,7 +26,7 @@ public class PostTodoTest extends BaseContractTest {
 
     @Test(dataProvider = "postIncorrectParams")
     public void postWithIncorrectParamsTest(Object id, Object text, Object completed) {
-        Response response = controller.createTodoNoTypes(TodoNoTypesDto.builder()
+        Response response = controller.createTodo(TodoNoTypesDto.builder()
                 .id(id)
                 .text(text)
                 .completed(completed)

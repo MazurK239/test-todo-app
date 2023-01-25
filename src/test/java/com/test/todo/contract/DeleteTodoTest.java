@@ -17,13 +17,13 @@ public class DeleteTodoTest extends BaseContractTest {
     @Test
     public void deleteWithCorrectParamsTest() {
         Long validId = TestData.INSTANCE.getTestData().get(0).getId();
-        Response response = controller.deleteTodoNoTypes(validId);
+        Response response = controller.deleteTodo(validId);
         Assert.assertEquals(response.getStatusCode(), 204, "The status code is incorrect");
     }
 
     @Test(dataProvider = "putIncorrectParams")
     public void deleteWithIncorrectParamsTest(Object id, int statusCode) {
-        Response response = controller.deleteTodoNoTypes(id);
+        Response response = controller.deleteTodo(id);
         Assert.assertEquals(response.getStatusCode(), statusCode, "The status code is incorrect");
     }
 

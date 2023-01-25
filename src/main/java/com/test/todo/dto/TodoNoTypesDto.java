@@ -11,7 +11,7 @@ import java.util.Random;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TodoNoTypesDto {
+public class TodoNoTypesDto implements ITodo {
     private Object id;
     private Object text;
     private Object completed;
@@ -23,5 +23,10 @@ public class TodoNoTypesDto {
                 .text("")
                 .completed(false)
                 .build();
+    }
+
+    @Override
+    public String toString() {
+        return "{id: " + id + "; text: " + text + "; completed: " + completed + "}";
     }
 }

@@ -17,7 +17,7 @@ public class PutTodoTest extends BaseContractTest {
 
     @Test(dataProvider = "putCorrectParams")
     public void putWithCorrectParamsTest(Object id, Object newId, Object newText, Object newCompleted) {
-        Response response = controller.updateTodoNoTypes(id, TodoNoTypesDto.builder()
+        Response response = controller.updateTodo(id, TodoNoTypesDto.builder()
                 .id(newId)
                 .text(newText)
                 .completed(newCompleted)
@@ -27,7 +27,7 @@ public class PutTodoTest extends BaseContractTest {
 
     @Test(dataProvider = "putIncorrectParams")
     public void putWithIncorrectParamsTest(Object id, Object newId, Object newText, Object newCompleted, int statusCode) {
-        Response response = controller.updateTodoNoTypes(id, TodoNoTypesDto.builder()
+        Response response = controller.updateTodo(id, TodoNoTypesDto.builder()
                 .id(newId)
                 .text(newText)
                 .completed(newCompleted)

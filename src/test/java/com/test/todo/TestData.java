@@ -1,5 +1,6 @@
 package com.test.todo;
 
+import com.test.todo.api.TodosController;
 import com.test.todo.dto.TodoDto;
 import io.restassured.common.mapper.TypeRef;
 import lombok.Getter;
@@ -20,7 +21,7 @@ public enum TestData {
 
     public void clearTestData() {
         log.info("Clearing test data");
-        List<TodoDto> todos = controller.getTodos().as(new TypeRef<>() {});
+        List<TodoDto> todos = controller.getTodos(null, null).as(new TypeRef<>() {});
         todos.forEach(todo -> controller.deleteTodo(todo.getId()));
         testData.clear();
     }

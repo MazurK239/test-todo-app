@@ -19,7 +19,7 @@ public class SmokeTest extends BaseTest {
 
     @Test(dependsOnMethods = "postTest")
     public void getTest() {
-        Response response = controller.getTodos();
+        Response response = controller.getTodos(null, null);
         Assert.assertEquals(response.getStatusCode(), 200, "The status code is incorrect");
     }
 

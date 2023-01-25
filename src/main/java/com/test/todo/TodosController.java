@@ -58,4 +58,8 @@ public class TodosController {
     public Response deleteTodo(Long id) {
         return given(rsWithAuth).delete("/" + id);
     }
+
+    public Response deleteTodoNoTypes(Object id) {
+        return given(rsWithAuth).delete("/" + id);
+    }
 }

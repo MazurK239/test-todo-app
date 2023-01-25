@@ -1,4 +1,4 @@
-package com.test.todo.endpoints;
+package com.test.todo.contract;
 
 import com.test.todo.BaseTest;
 import com.test.todo.TestData;
@@ -10,14 +10,14 @@ import org.testng.annotations.BeforeTest;
 
 import java.util.List;
 
-public class BaseEndpointsTest extends BaseTest {
+public class BaseContractTest extends BaseTest {
 
-    @BeforeTest(groups = "endpoints")
+    @BeforeTest(groups = "contract")
     public void prepareData() {
         TestData.INSTANCE.generateTestData();
     }
 
-    @AfterTest(groups = "endpoints")
+    @AfterTest(groups = "contract")
     public void clearData() {
         TestData.INSTANCE.clearTestData();
     }

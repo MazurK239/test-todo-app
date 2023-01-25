@@ -7,10 +7,13 @@
         </classes>
     </test>
 
-    <test name="Endpoints" parallel="classes" thread-count="4">
+<!-- It is possible to make those tests run in parallel, but it didn't make much of a difference with such quick endpoints -->
+    <test name="Contract">
         <classes>
-            <class name="com.test.todo.endpoints.GetTodosTest"/>
-            <class name="com.test.todo.endpoints.PostTodoTest"/>
+            <class name="com.test.todo.contract.GetTodosTest"/>
+            <class name="com.test.todo.contract.PostTodoTest"/>
+            <class name="com.test.todo.contract.PutTodoTest"/>
+            <class name="com.test.todo.contract.DeleteTodoTest"/>
         </classes>
     </test>
 </suite>

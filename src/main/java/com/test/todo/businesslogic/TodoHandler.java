@@ -21,6 +21,12 @@ public class TodoHandler {
         return controller.getTodos(offset, limit).as(new TypeRef<>() {});
     }
 
+    public TodoDto getTodoById(Long id) {
+        return getTodos().stream()
+                .filter(todo -> todo.getId().equals(id))
+                .findAny().orElse(null);
+    }
+
     public void createTodo(TodoDto todo) {
         log.info("Creating a todo: {}", todo.toString());
         controller.createTodo(todo);

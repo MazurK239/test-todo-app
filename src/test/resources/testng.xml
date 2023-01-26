@@ -16,4 +16,9 @@
             <class name="com.test.todo.contract.DeleteTodoTest"/>
         </classes>
     </test>
+    <test name="App">
+        <classes>
+            <class name="com.test.todo.logic.AppTest"/>
+        </classes>
+    </test>
 </suite>

@@ -3,6 +3,7 @@ package com.test.todo.api;
 import com.test.todo.dto.ITodo;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,9 @@ public class TodosController {
     private static final String USERNAME = System.getProperty("username");
     private static final String PASSWORD = System.getProperty("password");
     private static final String AUTH = System.getProperty("auth");
+
+    @Getter
+    private static int lastStatusCode;
 
     private final RequestSpecification rs = given()
             .baseUri("http://localhost:8080")
@@ -31,18 +35,26 @@ public class TodosController {
         Map<String, Object> queryParams = new HashMap<>();
         if (offset != null) queryParams.put("offset", offset);
         if (limit != null) queryParams.put("limit", limit);
-        return given(rs).queryParams(queryParams).get();
+        Response response = given(rs).queryParams(queryParams).get().then().log().ifError().extract().response();
+        lastStatusCode = response.getStatusCode();
+        return response;
     }
 
     public Response createTodo(ITodo todo) {
-        return given(rs).body(todo).post();
+        Response response = given(rs).body(todo).post().then().log().ifError().extract().response();
+        lastStatusCode = response.getStatusCode();
+        return response;
     }
 
     public Response updateTodo(Object id, ITodo updatedTodo) {
-        return given(rs).body(updatedTodo).put("/" + id);
+        Response response = given(rs).body(updatedTodo).put("/" + id).then().log().ifError().extract().response();
+        lastStatusCode = response.getStatusCode();
+        return response;
     }
 
     public Response deleteTodo(Object id) {
-        return given(rsWithAuth).delete("/" + id);
+        Response response = given(rsWithAuth).delete("/" + id).then().log().ifError().extract().response();
+        lastStatusCode = response.getStatusCode();
+        return response;
     }
 }
